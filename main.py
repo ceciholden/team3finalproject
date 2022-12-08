@@ -3,7 +3,21 @@ import pwinput
 import re
 from replit import db
 
-  
+
+class HospitalManagement:
+  __MAX_PATIENTS = 200
+
+  def __init__(self, patientName):
+    self.__patientName = patientName
+    self.__patientList = []
+    self.__doctorList = []
+
+  def enlistPatient(self, patientName):
+    if (len(self.__patientList) < HospitalManagement.__MAX_PATIENTS):
+      self.__patientList.append(patientName)
+    else:
+      raise ValueError('Hospital is at max patient capacity. ')
+      
 #login
 def login():
     username = input("Enter username or type sign up: ")
