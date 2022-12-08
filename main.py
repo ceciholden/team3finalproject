@@ -75,7 +75,7 @@ def signup():
         age=input("Enter your age: ")
         gender=input("Enter your gender: ")
         DoB=input("Enter Date of Birth(Format: dd-mm-yyyy): ")
-        department=input("Enter your department(doctor/staff/patient): ")
+        department=input("Enter your department(doctor/staff): ")
       
         password = pwinput.pwinput(prompt="Create your password: ", mask="*")
         passAuth(username,password)
@@ -109,7 +109,7 @@ def menu():
         dis_guy = input("Enter name to view their personal data: ")
         personInfo = HospitalPersons(dis_guy,db[dis_guy][0],db[dis_guy][1],db[dis_guy][2],db[dis_guy][3])
         personInfo.viewPersonalInfo()
-
+#you guys add your methods
 
 #Main function
 def main():
