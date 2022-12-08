@@ -142,3 +142,43 @@ def main():
     print("Successful Logout")
 
 main()
+
+class Patient(HospitalPersons):
+  appointmentNum = 0
+  
+  def __init__(self, name, age, gender, DoB, department, height, weight, allergies, illnesses, medicines):
+    self.__height = height
+    self.__weight = weight
+    self.__allergies = allergies
+    self.__illnesses = illnesses
+    self.__medicines = medicines
+    super().__init__(name, age, gender, DoB, department)
+  
+  def getIllnesses(self):
+    return self.__illnesses
+
+  def getHeight(self):
+    return str(self.__height)
+
+  def getWeight(self):
+    return str(self.__weight)
+
+  #def setAppointment(name, DOB, time):
+    #
+
+  def viewMedRecord(self):
+    super().viewPersonalInfo()
+    string = "\nDetailed medical record is: \nHeight: "+self.getHeight()+" inches \nWeight: "+self.getWeight()+" lbs \n"+"Allergies include:"
+    for x in self.__allergies:
+      string = string+" "+x
+    string=string+"\n"+"Illnesses include:"
+    for y in self.__illnesses:
+      string = string+" "+y+","
+    string+="\n"+"Medicine List:"
+    for z in self.__medicines:
+      string = string+" "+z+","
+    return string
+
+patientA = Patient("Samantha Chu", 22, "F", "01-01-2000", "Hematology", 70, 150, ['Penicillin', 'Pollen'], ['Sickle Cell Disease: Severe','Low Blood Pressure: Benign'],['Ramipril','Hydroxyurea'])
+
+print(patientA.viewMedRecord())
