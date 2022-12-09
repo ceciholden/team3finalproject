@@ -127,20 +127,41 @@ class Patient(HospitalPersons):
   def getHeight(self):
     return str(self.__height)
 
+  def setHeight(self, height):
+    self.__height = str(height)
+
   def getWeight(self):
     return str(self.__weight)
+
+  def setWeight(self, weight):
+    self.__weight = str(weight)
 
   def getAllergies(self):
     return self.__allergies
 
+  def addAllergies(self, allergy):
+    self.__allergies.add(allergy)
+
+  def removeAllergy(self, allergy):
+    self.__allergies.remove(allergy)
+
   def getIllnesses(self):
     return self.__illnesses
+
+  def addIllness(self, illness):
+    self.__illness.append(illness)
+
+  def removeIllness(self, illness):
+    self.__illness.remove(illness)
 
   def setAppointment(self, name, DOB, date, time):
     accessName = name+" "+DOB
     self.__apptTime = (date, time)
     if accessName in db.keys():
       db[accessName] = db[accessName]+self.__apptTime
+
+  def getAppointment(self):
+    return self.__apptTime
 
   def viewMedRecord(self):
     super().viewPersonalInfo()
@@ -158,7 +179,6 @@ class Patient(HospitalPersons):
 
 #patientA = Patient("Samantha Chu", 22, "F", "01-01-2000", "Hematology", 70, 150,['Penicillin', 'Pollen'],['Sickle Cell Disease: Severe', 'Low Blood Pressure: Benign'],['Ramipril', 'Hydroxyurea'])
 #print(patientA.viewMedRecord())
-
 
 
 #menu
