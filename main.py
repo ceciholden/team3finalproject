@@ -3,6 +3,7 @@ import pwinput
 import re
 from replit import db
 
+db.update({"hi":["age", "gender", "DoB", "department", "password"]})
 
 #login
 def login():
@@ -177,6 +178,76 @@ class Patient(HospitalPersons):
     return string
 
 
+
+
+class Doctor(HospitalPersons):
+  def __init__(self):
+    super().__init__(name, age, gender, DoB, department, password)
+
+  def viewSchedule(self):
+    #returns all patient appointments
+      #add patient attributes to variable
+    for key in db:
+      if " " in db.key():
+        print(getAppointment(key))
+
+  def editSchedule():
+    #change name, dob, time, date
+    patName = input("Patient name: ")
+    patDoB = input("Patient DoB: ")
+    schChoice = input("Choose schedule attribute: ").lower
+    if schChoice == "time":
+      newTime = input("Input new time: ")
+      #change the appt time
+    if schChoice == "date":
+      newDate = input("Input new date: ")
+      db[patName+" "+patDoB].__apptTime()
+      #change the appt date
+
+  def changeAttribute():
+    #change height, weight, allergies, illnesses, medicine
+      #calls set function in patient class
+    #uses the set methods that will be made later
+    patName = input("Patient name: ")
+    patDob = input("Patient DoB: ")
+    attChoice = input("Choose attribute: ").lower
+    if attChoice == "height":
+      return
+    elif attChoice == "weight":
+      return
+    elif attChoice == "allergies":
+      return
+    elif attChoice == "illnesses":
+      return
+    elif attChoice == "medicine":
+      return
+  
+  def addPatient(self): 
+    nameInput = input("What is the patient's name? ")
+    ageInput = input("What is the patient's age? ")
+    genderInput = input("What is the patient's gender? (M/F/N) ")
+    DoB = input("What is the patient's date of birth? (dd-mm-yyyy) ")
+    departmentInput = input("What department is this patient in? ")
+    heightInput = input("What is this patient's height in inches? ")
+    weightInput = input("What is this patient's weight in lbs? ")
+    allergiesNum = int(input("How many allergies do you want to input?"))
+    allergies = []
+    for x in range(allergiesNum):
+      y = input("What is their allergy? ")
+      allergies.append(y)
+    illnessesNum = int(input("How many illnesses does the patient have?"))
+    illnesses = []
+    for x in range(allergiesNum):
+      z = input("What is their illness and the severity? Write it in illness: severity form. ")
+      illnesses.append(z)
+    medsNum = int(input("How many meds does this patient take? "))
+    medicines = []
+    for x in range(medsNum):
+      medicines.append(input("What medicine does this patient take? "))
+    accessName = nameInput+" "+DoB
+    db[accessName] = Patient(nameInput, ageInput,genderInput,departmentInput,heightInput,weightInput,allergies,illnesses,medicines)
+    
+    
 #patientA = Patient("Samantha Chu", 22, "F", "01-01-2000", "Hematology", 70, 150,['Penicillin', 'Pollen'],['Sickle Cell Disease: Severe', 'Low Blood Pressure: Benign'],['Ramipril', 'Hydroxyurea'])
 #print(patientA.viewMedRecord())
 
