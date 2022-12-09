@@ -4,21 +4,6 @@ import re
 from replit import db
 
 
-class HospitalManagement:
-  __MAX_PATIENTS = 200
-
-  def __init__(self):
-    self.__patientList = []
-
-  def enlistPatient(self, patientName):
-    if (len(self.__patientList) < HospitalManagement.__MAX_PATIENTS):
-      self.__patientList.append(patientName)
-      return self.__patientList
-    else:
-      raise ValueError('Hospital is at max patient capacity. ')
-
-  def viewPatientList(self):
-    print(self.__patientList)
 
 
 #login
@@ -113,42 +98,22 @@ class HospitalPersons:
     print(f"Date of Birth: {self.__DoB}")
     print(f"Department: {self.__department}")
 
+class HospitalManagement:
+  __MAX_PATIENTS = 200
 
-#menu
-def menu():
-  print("1.View personal information")
-  print("2. ....coming soon....")
-  selection = input("Enter a number: ")
+  def __init__(self):
+    self.__patientList = []
 
-  if selection == '1':
-    #View personal info
-    dis_guy = input("Enter name to view their personal data: ")
-    personInfo = HospitalPersons(dis_guy, db[dis_guy][0], db[dis_guy][1],
-                                 db[dis_guy][2], db[dis_guy][3])
-    personInfo.viewPersonalInfo()
+  def enlistPatient(self, patientName):
+    if (len(self.__patientList) < HospitalManagement.__MAX_PATIENTS):
+      self.__patientList.append(patientName)
+      return self.__patientList
+    else:
+      raise ValueError('Hospital is at max patient capacity. ')
 
+  def viewPatientList(self):
+    print(self.__patientList)
 
-#you guys add your methods
-
-
-#Main function
-def main():
-  print("Type in Logout to exit")
-  start = 'log in'
-  while start.lower() != 'logout':
-    start = input("Type Login or Sign Up: ")
-
-    if start.lower() == 'login':
-      login()
-      menu()
-
-    if start.lower() == 'sign up':
-      signup()
-  else:
-    print("Successful Logout")
-
-
-main()
 
 
 class Patient(HospitalPersons):
@@ -198,3 +163,40 @@ patientA = Patient(
   ['Ramipril', 'Hydroxyurea'])
 
 print(patientA.viewMedRecord())
+
+
+
+#menu
+def menu():
+  print("1.View personal information")
+  print("2. ....coming soon....")
+  selection = input("Enter a number: ")
+  
+  if selection == '1':
+    #View personal info
+    dis_guy = input("Enter name to view their personal data: ")
+    personInfo = HospitalPersons(dis_guy, db[dis_guy][0], db[dis_guy][1],
+                                 db[dis_guy][2], db[dis_guy][3])
+    personInfo.viewPersonalInfo()
+    #you guys add your methods
+
+    #Main function
+def main():
+  print("Type in Logout to exit")
+  start = 'log in'
+  while start.lower() != 'logout':
+    start = input("Type Login or Sign Up: ")
+
+    if start.lower() == 'login':
+      login()
+      menu()
+
+    if start.lower() == 'sign up':
+      signup()
+  else:
+    print("Successful Logout")
+
+
+main()
+
+
