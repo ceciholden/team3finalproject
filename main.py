@@ -106,19 +106,19 @@ class HospitalManagement:
   __MAX_PATIENTS = 200
 
   def __init__(self):
+    '''This function is the initialization of the HospitalManagement class. It allows hospital administration/personnel to update and view the list of patients currently registered in the hospital. There is a maximum limit of 200 patients within the hospital.'''
     self.__patientList = []
-
-  def enlistPatient(self, patientName):
-    if (len(self.__patientList) < HospitalManagement.__MAX_PATIENTS):
-      self.__patientList.append(patientName)
-      return self.__patientList
-    else:
-      raise ValueError('Hospital is at max patient capacity. ')
 
   def viewPatientList(self):
     print(self.__patientList)
 
-
+  def enlistPatient(self, patientName):
+    if (len(self.__patientList) < HospitalManagement.__MAX_PATIENTS):
+      self.__patientList.append(patientName)
+      print(patientName, 'added')
+      return self.__patientList
+    else:
+      raise ValueError('Hospital is at max patient capacity. ')
 
 class Patient(HospitalPersons):
 
@@ -293,6 +293,7 @@ def menu():
   print("1. View personal information")
   print("2. Add Patient Info")
   print("3. Doctor functions")
+  print("4. View/Edit Registered Patient List")
   selection = input("Enter a number: ")
   
   if selection == '1':
