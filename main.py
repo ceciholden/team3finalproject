@@ -7,6 +7,7 @@ db.update({"hi":["age", "gender", "DoB", "department", "password"]})
 
 #login
 def login():
+  '''Function allows users to log in to the database. If their username is not in the database they have the option to sign up'''
   username = input("Enter username or type sign up: ")
 
   if username in db:
@@ -17,10 +18,11 @@ def login():
   else:
     print("Username does not exist")
     login()
-db = {}
+
 
 #checkPass
 def checkPass(username, password):
+  '''Takes username and password as input. Checks if the password entered by the user matches the user's username in the database. If username and password match, the user is granted access to the database. Otherwise, the user is prompted to re-enter their password'''
   trials = 0
   if db[username][4] == password:
     print("\nSUCCESSFULL LOGIN...WELCOME :)")
@@ -39,6 +41,7 @@ def checkPass(username, password):
 
 #passwordAuthentication
 def passAuth(y, x):
+  '''Functions takes in password and checks it against an already established criteria. If password meets criteria, it is accepted as a valid password. Otherwise, the user is asked to enter a new password that meets the criteria.'''
   pass_pattern = "^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
   pat = re.compile(pass_pattern)
   mat = re.search(pat, x)
@@ -63,6 +66,7 @@ def passAuth(y, x):
 
 #signup
 def signup():
+  '''Functions allows to create new users in the database. If a username already exists, they login instead of signing up.'''
   username = input("Create a username: ")
 
   if username in db:
@@ -84,6 +88,7 @@ def signup():
 class HospitalPersons:
 
   def __init__(self, name, age, gender, DoB, department):
+    '''This function is the initialization of the HospitalPersons class. It allows users to enter their personal information as defined within the scope of the class'''
     self.__name = name
     self.__age = age
     self.__gender = gender
@@ -91,6 +96,7 @@ class HospitalPersons:
     self.__department = department
 
   def viewPersonalInfo(self):
+    '''Shows the personal information of the member of staff whose name is entered. Personal information is the name,age,gender,DoB, and their department'''
     print(f"Name: {self.__name}")
     print(f"Age: {self.__age}")
     print(f"Gender: {self.__gender}")
