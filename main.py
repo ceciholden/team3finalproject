@@ -181,15 +181,15 @@ class Patient(HospitalPersons):
 
 
 class Doctor(HospitalPersons):
-  def __init__(self):
-    super().__init__(name, age, gender, DoB, department, password)
+  def __init__(self,name,age,gender,DoB,department):
+    super().__init__(name, age, gender, DoB, department)
 
   def viewSchedule(self):
     #returns all patient appointments
       #add patient attributes to variable
     for key in db:
       if " " in db.key():
-        print(getAppointment(key))
+        print(self.getAppointment(key))
 
   def editSchedule():
     #change name, dob, time, date
@@ -237,13 +237,13 @@ class Doctor(HospitalPersons):
       allergies.append(y)
     illnessesNum = int(input("How many illnesses does the patient have?"))
     illnesses = []
-    for x in range(allergiesNum):
+    for x in range(illnessesNum):
       z = input("What is their illness and the severity? Write it in illness: severity form. ")
       illnesses.append(z)
     medsNum = int(input("How many meds does this patient take? "))
     medicines = []
     for x in range(medsNum):
-      medicines.append(input("What medicine does this patient take? "))
+      medicines.append(input("What medicine does this patient take?"))
     accessName = nameInput+" "+DoB
     db[accessName] = Patient(nameInput, ageInput,genderInput,departmentInput,heightInput,weightInput,allergies,illnesses,medicines)
     
@@ -255,7 +255,8 @@ class Doctor(HospitalPersons):
 #menu
 def menu():
   print("1.View personal information")
-  print("2. ....coming soon....")
+  print("2. Add Patient Info")
+  print("3 .. coming soon ..")
   selection = input("Enter a number: ")
   
   if selection == '1':
@@ -264,6 +265,11 @@ def menu():
     personInfo = HospitalPersons(dis_guy, db[dis_guy][0], db[dis_guy][1],db[dis_guy][2], db[dis_guy][3])
     personInfo.viewPersonalInfo()
     #you guys add your methods
+  if selection == '2':
+    dis_guy = input("Enter your name to add their personal data: ")
+    doctorInfo = Doctor(dis_guy, db[dis_guy][0], db[dis_guy][1],db[dis_guy][2], db[dis_guy][3])
+    doctorInfo.addPatient()
+  #if selection == '3':
 
     #Main function
 def main():
