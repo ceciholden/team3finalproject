@@ -197,36 +197,56 @@ class Doctor(HospitalPersons):
       if " " in db.key():
         print(self.getAppointment(key))
 
-  def editSchedule():
+  def editSchedule(self):
     #change name, dob, time, date
     patName = input("Patient name: ")
     patDoB = input("Patient DoB: ")
     schChoice = input("Choose schedule attribute: ").lower
     if schChoice == "time":
       newTime = input("Input new time: ")
-      #change the appt time
+      for list in db[patName+" "+patDoB]:
+        list[1] = newTime
     if schChoice == "date":
       newDate = input("Input new date: ")
-      db[patName+" "+patDoB].__apptTime()
-      #change the appt date
+      for list in db[patName+" "+patDoB]:
+        list[0] = newDate
 
   def changeAttribute():
     #change height, weight, allergies, illnesses, medicine
       #calls set function in patient class
-    #uses the set methods that will be made later
     patName = input("Patient name: ")
-    patDob = input("Patient DoB: ")
+    patDoB = input("Patient DoB: ")
     attChoice = input("Choose attribute: ").lower
     if attChoice == "height":
-      return
+      newHeight = input("Input new height: ")
+      db[patName + " " + patDoB].setHeight(newHeight)
     elif attChoice == "weight":
-      return
+      newWeight = input("Input new weight: ")
+      db[patName + " " + patDoB].setHeight(newHeight)
     elif attChoice == "allergies":
-      return
+      addOrRemove = input("Add or remove: ").lower
+      if addOrRemove == "add":
+        newAllergy = input("Input new allergy: ")
+        db[patName + " " + patDoB].addAllergies(newAllergy)
+      elif addOrRemove == "remove":
+        newAllergy = input("Input allergy to remove: ")
+        db[patName + " " + patDoB].removeAllergies(newAllergy)
     elif attChoice == "illnesses":
-      return
+      addOrRemove = input("Add or remove: ").lower
+      if addOrRemove == "add":
+        newIllness = input("Input new illness: ")
+        db[patName + " " + patDoB].addIllness(newIllness)
+      elif addOrRemove == "remove":
+        newIllness = input("Input illness to remove: ")
+        db[patName + " " + patDoB].removeIllness(newIllness)
     elif attChoice == "medicine":
-      return
+       addOrRemove = input("Add or remove: ").lower
+      if addOrRemove == "add":
+        newMedicine = input("Input new medicine: ")
+        db[patName + " " + patDoB].addMedicine(newMedicine)
+      elif addOrRemove == "remove":
+        newMedicine = input("Input medicine to remove: ")
+        db[patName + " " + patDoB].removeMedicine(newMedicine)
   
   def addPatient(self): 
     nameInput = input("What is the patient's name? ")
