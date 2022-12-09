@@ -3,8 +3,6 @@ import pwinput
 import re
 from replit import db
 
-db.update({"hi":["age", "gender", "DoB", "department", "password"]})
-
 #login
 def login():
   '''Function allows users to log in to the database. If their username is not in the database they have the option to sign up'''
@@ -19,6 +17,7 @@ def login():
     print("Username does not exist")
     login()
 
+db = {}
 
 #checkPass
 def checkPass(username, password):
@@ -136,36 +135,43 @@ class Patient(HospitalPersons):
 
   def setHeight(self, height):
     self.__height = str(height)
+    print("Height set to " + str(height))
 
   def getWeight(self):
     return str(self.__weight)
 
   def setWeight(self, weight):
     self.__weight = str(weight)
+    print("Weight set to " + str(weight))
 
   def getAllergies(self):
     return self.__allergies
 
   def addAllergies(self, allergy):
     self.__allergies.add(allergy)
+    print(allergy + " allergy added")
 
   def removeAllergy(self, allergy):
     self.__allergies.remove(allergy)
+    print(allergy + " allergy removed")
 
   def getIllnesses(self):
     return self.__illnesses
 
   def addIllness(self, illness):
     self.__illness.append(illness)
+    print(illness + " illness added")
 
   def removeIllness(self, illness):
     self.__illness.remove(illness)
+    print(illness + " illness removed")
 
   def setAppointment(self, name, DOB, date, time):
     accessName = name+" "+DOB
     self.__apptTime = [date, time]
     if accessName in db.keys():
       db[accessName] = db[accessName]+self.__apptTime
+    print("Appointment set")
 
   def getAppointment(self):
     return self.__apptTime
@@ -272,12 +278,14 @@ class Doctor(HospitalPersons):
       medicines.append(input("What medicine does this patient take?"))
     accessName = nameInput+" "+DoB
     db[accessName] = Patient(nameInput,ageInput,genderInput,DoB,departmentInput,heightInput,weightInput,allergies,illnesses,medicines)
+    print("Patient added!")
     
 
 #patientA = Patient("Samantha Chu", 22, "F", "01-01-2000", "Hematology", 70, 150,['Penicillin', 'Pollen'],['Sickle Cell Disease: Severe', 'Low Blood Pressure: Benign'],['Ramipril', 'Hydroxyurea'])
 #print(patientA.viewMedRecord())
 
 #doctor object that can be used to call doctor functions
+db.update({"hi":["age", "gender", "DoB", "department", "password"]})
 testDoctor = Doctor("name", "age", "gender", "DoB", "department")
     
 #menu
