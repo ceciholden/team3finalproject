@@ -196,41 +196,48 @@ class Doctor(HospitalPersons):
   def __init__(self,name,age,gender,DoB,department):
     super().__init__(name, age, gender, DoB, department)
 
+  #unfinished
   def viewSchedule(self):
     #returns all patient appointments
       #add patient attributes to variable
     for key in db:
-      if " " in db.key():
-        print(self.getAppointment(key))
+      if " " in key:
+        print(getAppointment(key))
 
   def editSchedule(self):
     #change name, dob, time, date
     patName = input("Patient name: ")
     patDoB = input("Patient DoB: ")
-    schChoice = input("Choose schedule attribute: ").lower
-    if schChoice == "time":
-      newTime = input("Input new time: ")
-      for list in db[patName+" "+patDoB]:
-        list[1] = newTime
-    if schChoice == "date":
-      newDate = input("Input new date: ")
-      for list in db[patName+" "+patDoB]:
-        list[0] = newDate
+    if (patName+" "+patDoB) not in db.keys():
+      print("Patient not found")
+    else:
+      schChoice = input("Choose schedule attribute (time, date): ").lower()
+      if schChoice == "time":
+        newTime = input("Input new time: ")
+        #patient object is not iterable. ask about __apptTime in db
+        for list in db[patName+" "+patDoB]:
+          list[1] = newTime
+        print("Time updated")
+      if schChoice == "date":
+        newDate = input("Input new date: ")
+        for list in db[patName+" "+patDoB]:
+          list[0] = newDate
+        print("Date updated")
 
-  def changeAttribute():
+  def changeAttribute(self):
     #change height, weight, allergies, illnesses, medicine
       #calls set function in patient class
     patName = input("Patient name: ")
     patDoB = input("Patient DoB: ")
-    attChoice = input("Choose attribute: ").lower
+    attChoice = input("Choose attribute (height, weight, allergies, illnesses, medicine): ").lower()
     if attChoice == "height":
       newHeight = input("Input new height: ")
       db[patName + " " + patDoB].setHeight(newHeight)
     elif attChoice == "weight":
       newWeight = input("Input new weight: ")
-      db[patName + " " + patDoB].setHeight(newHeight)
+      db[patName + " " + patDoB].setWeight(newWeight)
     elif attChoice == "allergies":
-      addOrRemove = input("Add or remove: ").lower
+      addOrRemove = input("Add or remove: ").lower()
       if addOrRemove == "add":
         newAllergy = input("Input new allergy: ")
         db[patName + " " + patDoB].addAllergies(newAllergy)
@@ -238,7 +245,7 @@ class Doctor(HospitalPersons):
         newAllergy = input("Input allergy to remove: ")
         db[patName + " " + patDoB].removeAllergies(newAllergy)
     elif attChoice == "illnesses":
-      addOrRemove = input("Add or remove: ").lower
+      addOrRemove = input("Add or remove: ").lower()
       if addOrRemove == "add":
         newIllness = input("Input new illness: ")
         db[patName + " " + patDoB].addIllness(newIllness)
@@ -246,7 +253,7 @@ class Doctor(HospitalPersons):
         newIllness = input("Input illness to remove: ")
         db[patName + " " + patDoB].removeIllness(newIllness)
     elif attChoice == "medicine":
-      addOrRemove = input("Add or remove: ").lower
+      addOrRemove = input("Add or remove: ").lower()
       if addOrRemove == "add":
         newMedicine = input("Input new medicine: ")
         db[patName + " " + patDoB].addMedicine(newMedicine)
@@ -287,6 +294,7 @@ class Doctor(HospitalPersons):
 #doctor object that can be used to call doctor functions
 db.update({"hi":["age", "gender", "DoB", "department", "password"]})
 testDoctor = Doctor("name", "age", "gender", "DoB", "department")
+db["bob" + " " + "9"] = Patient("bob","9","9","9","9","9","9","","","")
     
 #menu
 def menu():
@@ -311,15 +319,15 @@ def menu():
     print("2. Edit schedule")
     print("3. Change patient attribute")
     choice = input("Enter a number: ")
-    if choice == 1:
+    if choice == '1':
       dis_guy = input("Enter your name to view the schedule: ")
       doctorInfo = Doctor(dis_guy, db[dis_guy][0], db[dis_guy][1],db[dis_guy][2], db[dis_guy][3])
       doctorInfo.viewSchedule()
-    elif choice == 2:
+    if choice == '2':
       dis_guy = input("Enter your name to edit the schedule: ")
       doctorInfo = Doctor(dis_guy, db[dis_guy][0], db[dis_guy][1],db[dis_guy][2], db[dis_guy][3])
-      doctorInfo = editSchedule()
-    elif choice == 3:
+      doctorInfo.editSchedule()
+    if choice == '3':
       testDoctor.changeAttribute()
 
     #Main function
