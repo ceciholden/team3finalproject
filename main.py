@@ -110,15 +110,24 @@ class HospitalManagement:
     self.__patientList = []
 
   def viewPatientList(self):
+    '''This function takes no arguments. It prints the list of patients currently registered at the hospital.'''
     print(self.__patientList)
 
   def enlistPatient(self, patientName):
+    '''This function takes argument (type string) patientName. The patientName will be added to the list of registered patients in the hospital.'''
     if (len(self.__patientList) < HospitalManagement.__MAX_PATIENTS):
       self.__patientList.append(patientName)
       print(patientName, 'added')
       return self.__patientList
     else:
       raise ValueError('Hospital is at max patient capacity. ')
+
+  def removePatient(self, patientName):
+    '''This function takes argument (type string) patientName. If the patient is registered in the patientList, the patientName will be removed from the hospital's registered patients list.'''
+    if patientName in self.__patientList:
+      self.__patientList.remove(patientName)
+      print(patientName, 'removed')
+      return self.__patientList
 
 class Patient(HospitalPersons):
 
@@ -329,6 +338,20 @@ def menu():
       doctorInfo.editSchedule()
     if choice == '3':
       testDoctor.changeAttribute()
+  if selection == '4':
+    print('1. View Registered Patients')
+    print('2. Register New Patient')
+    print('3. Unregister Patient')
+    choose = input('Enter a Number: ')
+    hm = HospitalManagement()
+    if choose == '1':
+      hm.viewPatientList()
+    elif choose == '2':
+      patientToAdd = input('Input the name of the patient to register: ')
+      hm.enlistPatient(patientToAdd)
+    elif choose == '3':
+      patientToRemove = input('Input the name of the patient being discharged: ')
+      hm.removePatient(patientToRemove)
 
     #Main function
 def main():
