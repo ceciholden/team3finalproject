@@ -17,7 +17,7 @@ def login():
   else:
     print("Username does not exist")
     login()
-
+db = {}
 
 #checkPass
 def checkPass(username, password):
