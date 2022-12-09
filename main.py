@@ -245,7 +245,7 @@ class Doctor(HospitalPersons):
     for x in range(medsNum):
       medicines.append(input("What medicine does this patient take?"))
     accessName = nameInput+" "+DoB
-    db[accessName] = Patient(nameInput, ageInput,genderInput,departmentInput,heightInput,weightInput,allergies,illnesses,medicines)
+    db[accessName] = Patient(nameInput,ageInput,genderInput,DoB,departmentInput,heightInput,weightInput,allergies,illnesses,medicines)
     
     
 #patientA = Patient("Samantha Chu", 22, "F", "01-01-2000", "Hematology", 70, 150,['Penicillin', 'Pollen'],['Sickle Cell Disease: Severe', 'Low Blood Pressure: Benign'],['Ramipril', 'Hydroxyurea'])
