@@ -110,8 +110,8 @@ class HospitalManagement:
     self.__patientList = []
 
   def viewPatientList(self):
-    '''This function takes no arguments. It prints the list of patients currently registered at the hospital.'''
-    print(self.__patientList)
+    '''This function takes no arguments. It returns the list of patients currently registered at the hospital.'''
+    return self.__patientList
 
   def enlistPatient(self, patientName):
     '''This function takes argument (type string) patientName. The patientName will be added to the list of registered patients in the hospital.'''
@@ -345,7 +345,7 @@ def menu():
     choose = input('Enter a Number: ')
     hm = HospitalManagement()
     if choose == '1':
-      hm.viewPatientList()
+      print(hm.viewPatientList())
     elif choose == '2':
       patientToAdd = input('Input the name of the patient to register: ')
       hm.enlistPatient(patientToAdd)
