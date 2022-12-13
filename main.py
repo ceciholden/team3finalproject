@@ -75,8 +75,8 @@ def signup():
   else:
     print('Username accepted\n')
     age = input("Enter your age: ")
-    gender = input("Enter your gender: ")
-    DoB = input("Enter Date of Birth(Format: dd-mm-yyyy): ")
+    gender = input("Enter your gender (Format: M/F/N): ")
+    DoB = input("Enter Date of Birth (Format: dd-mm-yyyy): ")
     department = input("Enter your department(doctor/staff): ")
 
     password = pwinput.pwinput(prompt="Create your password: ", mask="*")
@@ -87,7 +87,7 @@ def signup():
 class HospitalPersons:
 
   def __init__(self, name, age, gender, DoB, department):
-    '''This function is the initialization of the HospitalPersons class. It allows users to enter their personal information as defined within the scope of the class'''
+    '''This function is the initialization of the HospitalPersons class. It allows users to enter their personal information as defined within the scope of the class.'''
     self.__name = name
     self.__age = age
     self.__gender = gender
