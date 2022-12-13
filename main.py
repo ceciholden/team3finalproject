@@ -131,6 +131,7 @@ class HospitalManagement:
 
 class Patient(HospitalPersons):
   def __init__(self, name, age, gender, DoB, department, height, weight, allergies, illnesses, medicines):
+    '''This function instantiates the Patient object, it accepts patient attributes like height, weight, age, gender, and department, which are all strings, and  allergies, illnesses and medicines, which are lists. It also sends name, age, gender, DoB, and department to the parent class'''
     self.__height = height
     self.__weight = weight
     self.__allergies = allergies
@@ -140,42 +141,53 @@ class Patient(HospitalPersons):
     super().__init__(name, age, gender, DoB, department)
 
   def getHeight(self):
+    '''This method returns the patient's height'''
     return str(self.__height)
 
   def setHeight(self, height):
+    '''This method changes the patient's height and confirms that it has been changed'''
     self.__height = str(height)
     print("Height set to " + str(height))
 
   def getWeight(self):
+    '''This method returns the patient's weight'''
     return str(self.__weight)
 
   def setWeight(self, weight):
+    '''This method changes the patient's weight and confirms that it has been changed'''
     self.__weight = str(weight)
     print("Weight set to " + str(weight))
 
   def getAllergies(self):
+    '''This method returns the list of the patient's allergies'''
     return self.__allergies
 
   def addAllergies(self, allergy):
+    '''This method adds an item (which is given as a string) to the list of the patient's allergies and confirms that is has been changed'''
     self.__allergies.add(allergy)
     print(allergy + " allergy added")
 
   def removeAllergy(self, allergy):
+    '''This method removes a specified item from the list of the patient's allergies and confirms that is has been removed'''
     self.__allergies.remove(allergy)
     print(allergy + " allergy removed")
 
   def getIllnesses(self):
+    '''This method returns the list of the patient's illnesses'''
     return self.__illnesses
 
   def addIllness(self, illness):
+    '''This method adds an item (which is given as a string) to the list of the patient's illnesses and confirms that is has been changed'''
     self.__illness.append(illness)
     print(illness + " illness added")
 
   def removeIllness(self, illness):
+    '''This method removes a specified item from the list of the patient's illnesses and confirms that is has been removed'''
     self.__illness.remove(illness)
     print(illness + " illness removed")
 
   def setAppointment(self, name, DOB, date, time):
+    '''This method sets a patient's appointment to the given date and time, which are given as strings. The name and DOB are also given as strings to access the patient's information in the database'''
     accessName = name+" "+DOB
     self.__apptTime = [date, time]
     if accessName in db.keys():
@@ -183,9 +195,11 @@ class Patient(HospitalPersons):
     print("Appointment set")
 
   def getAppointment(self):
+    '''This method returns the patient's appointment time as a string'''
     return self.__apptTime
 
   def viewMedRecord(self):
+    '''This method prints the patient's medical record as a table of strings'''
     super().viewPersonalInfo()
     string = "\nDetailed medical record is: \nHeight: "+self.getHeight()+" inches \nWeight: "+self.getWeight()+" lbs \n"+"Allergies include:"
     for x in self.__allergies:
