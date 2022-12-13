@@ -348,6 +348,8 @@ def menu():
       doctorInfo.viewSchedule()
     if choice == '2':
       dis_guy = input("Enter your name to edit the schedule: ")
+      if dis_guy not in db.keys():
+        raise Exception("Doctor does not exist")
       doctorInfo = Doctor(dis_guy, db[dis_guy][0], db[dis_guy][1],db[dis_guy][2], db[dis_guy][3])
       doctorInfo.editSchedule()
     if choice == '3':
