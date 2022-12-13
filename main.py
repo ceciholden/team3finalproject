@@ -130,13 +130,13 @@ class HospitalManagement:
       return self.__patientList
 
 class Patient(HospitalPersons):
-
   def __init__(self, name, age, gender, DoB, department, height, weight, allergies, illnesses, medicines):
     self.__height = height
     self.__weight = weight
     self.__allergies = allergies
     self.__illnesses = illnesses
     self.__medicines = medicines
+    self.__apptTime = ["date","time"]
     super().__init__(name, age, gender, DoB, department)
 
   def getHeight(self):
