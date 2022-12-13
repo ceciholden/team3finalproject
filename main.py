@@ -221,7 +221,7 @@ class Doctor(HospitalPersons):
 
   #unfinished
   def viewSchedule(self):
-  '''Returns all patient appointments'''
+    '''Returns all patient appointments.'''
     for key in db:
       if " " in key:
         print(db[key].getAppointment())
