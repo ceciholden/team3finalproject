@@ -182,8 +182,6 @@ class Patient(HospitalPersons):
       db[accessName] = db[accessName]+self.__apptTime
     print("Appointment set")
 
-  
-
   def getAppointment(self):
     return self.__apptTime
 
@@ -309,6 +307,7 @@ db["bob" + " " + "9"] = Patient("bob","9","9","9","9","9","9","","","")
     
 #menu
 def menu():
+  '''Displays all the options available to choose from'''
   print("1. View personal information")
   print("2. Add Patient Info")
   print("3. Doctor functions")
@@ -357,6 +356,7 @@ def menu():
 
     #Main function
 def main():
+  '''This is the main function call for the management system'''
   print("Type in Logout to exit")
   start = 'log in'
   while start.lower() != 'logout':
