@@ -66,6 +66,7 @@ def passAuth(y, x):
 #signup
 def signup():
   '''Functions allows to create new users in the database. If a username already exists, they login instead of signing up.'''
+  print('Username Requirements:\n - no spaces allowed\n - letters and numbers acceptable')
   username = input("Create a username: ")
 
   if username in db:
