@@ -207,14 +207,13 @@ class Doctor(HospitalPersons):
 
   #unfinished
   def viewSchedule(self):
-    #returns all patient appointments
-      #add patient attributes to variable
+  '''Returns all patient appointments'''
     for key in db:
       if " " in key:
         print(db[key].getAppointment())
 
   def editSchedule(self):
-    #change name, dob, time, date
+    '''Allows user to change the time and date of a patient's appointment.'''
     patName = input("Patient name: ")
     patDoB = input("Patient DoB: ")
     if (patName+" "+patDoB) not in db.keys():
@@ -234,8 +233,7 @@ class Doctor(HospitalPersons):
         print("Date updated")
 
   def changeAttribute(self):
-    #change height, weight, allergies, illnesses, medicine
-      #calls set function in patient class
+    '''Allows user to change height, weight, allergies, illnesses, and medicine properties of Patient object. Calls methods in patient class to change attributes.'''
     patName = input("Patient name: ")
     patDoB = input("Patient DoB: ")
     attChoice = input("Choose attribute (height, weight, allergies, illnesses, medicine): ").lower()
@@ -271,6 +269,7 @@ class Doctor(HospitalPersons):
         db[patName + " " + patDoB].removeMedicine(newMedicine)
   
   def addPatient(self): 
+    '''Allows user to add a new patient along with the accompanying information: Name, age, gender, date of birth, department, height, weight, allergies, illnesses, and medicines.'''
     nameInput = input("What is the patient's name? ")
     ageInput = input("What is the patient's age? ")
     genderInput = input("What is the patient's gender? (M/F/N) ")
