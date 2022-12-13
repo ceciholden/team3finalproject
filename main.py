@@ -182,6 +182,8 @@ class Patient(HospitalPersons):
       db[accessName] = db[accessName]+self.__apptTime
     print("Appointment set")
 
+  
+
   def getAppointment(self):
     return self.__apptTime
 
@@ -211,7 +213,7 @@ class Doctor(HospitalPersons):
       #add patient attributes to variable
     for key in db:
       if " " in key:
-        print(self.getAppointment(key))
+        print(db[key].getAppointment())
 
   def editSchedule(self):
     #change name, dob, time, date
